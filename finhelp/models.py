@@ -21,6 +21,6 @@ class HistAtivo(models.Model):
     ultimo_hist = models.BooleanField(null=True)
 
     def __str__(self):
-        return f'{self.id} | {self.fk_ativo.b3} | {self.nome_empresa} | {self.valor} | {self.data_atualizacao} | {self.porcentagem} | {self.valor_anterior}'
+        return f'{self.id} | {self.fk_ativo.b3} | {self.fk_ativo.nome_empresa} | {self.valor} | {self.data_atualizacao} | {self.porcentagem} | {self.valor_anterior}'
 
     
