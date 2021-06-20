@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-4 mb-5">
+	<div class="p-5 mb-4 rounded-3 col-md-8 col-10 mx-auto bg-cinza">
+		<div class="container-fluid py-2">
+			<h1><span class="hashtag">#</span>Cadastro</h1>
+			<p class="lead">Preencha os campos abaixo para criar sua conta.</p>
+			<hr class="my-4">
+			{{ form|as_crispy_errors }}
+			{% if flag == 1 %}
+				<div class="alert alert-success" role="alert">
+					<b>Cadastro realizado com sucesso!!</b>
+				</div>
+			{% endif %}
+			<h5>Dados Pessoais:</h5>
+			<form method="post" action="" class="boostrap4">
+				{% csrf_token %}
+				<div class="row">
+					<div class="col-12 col-md-6">
+						{{ form.first_name|as_crispy_field }}
+					</div>
+					<div class="col-12 col-md-6">
+						{{ form.last_name|as_crispy_field }}
+					</div>
+					<div class="col-12">   
+						{{ form.email|as_crispy_field }}
+					</div>
+					<div class="col-12">
+						{{ form.profession|as_crispy_field }}
+					</div>
+				</div> 
+				<h5 class="mt-3">Dados Usuário:</h5>
+				<div class="row">
+					<div class="col-12">	
+						{{ form.username|as_crispy_field }}
+					</div>
+					<div class="col-12">
+						{{ form.password1|as_crispy_field }}
+					</div>
+					<div class="col-12">
+						{{ form.password2|as_crispy_field }}
+					</div>
+				</div>    
+				<input type="submit" class="btn btn btn-primary mt-4 arredondar-botao" value="Criar Conta" />
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

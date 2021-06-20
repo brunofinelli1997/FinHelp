@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-4 mb-5">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb col-md-8 col-11 mx-auto">
+			<li class="breadcrumb-item"><a href="{% url 'profile'%}">Meus Ativos</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Alterar Ativo: {{ ativo.b3 }}</li>
+		</ol>
+	</nav>
+	<div class="p-5 mb-4 rounded-3 col-md-8 col-10 mx-auto bg-cinza">
+		<div class="container-fluid py-2">
+			<h1><span class="hashtag">#</span>Alterar Ativo</h1>
+			<p class="lead">Preencha os campos abaixo para alterar túnel de preço.</p>
+			<hr class="my-4">
+			{% if flag == 1 %}	
+				<div class="alert alert-danger" role="alert">
+					<b>Ativo não indentificado!!</b>
+				</div>
+			{% elif flag == 3 %}	
+				<div class="alert alert-danger" role="alert">
+					<b>Você já está monitorando este ativo!!</b>
+				</div>	
+			{% endif %}
+			<form method="post" action="" class="boostrap4">
+				{% csrf_token %}
+				{{ form|crispy }}
+				<input type="submit" class="btn btn btn-primary mt-4 arredondar-botao" value="Alterar Limites" />
+			</form>
+		</div>
+	</div>
+</div> 
+{% endblock %}

@@ -1,0 +1,53 @@
+a{
+	text-decoration:none;	
+}
+
+div.linha-vertical{
+	height: 150px;
+	border-left: 1px solid;
+}
+
+footer.pg-sm{
+	background-color: #11c169;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+}
+
+footer.pg-lg{
+	background-color: #11c169;
+	position: relative;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+}
+
+td.icone{
+	width: 30px;
+	text-align:center;
+}
+
+.hashtag{
+	color:#11c76f;
+}
+
+.sombra{
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.bg-cinza{
+	background-color:#f0f0f0;
+}
+
+.bg-branco{
+	background-color:#ffffff;
+}
+
+.arredondar-botao{
+	border-radius: 30px;
+}
+
+.arredondar-nav{
+	border-radius: 5px;
+}

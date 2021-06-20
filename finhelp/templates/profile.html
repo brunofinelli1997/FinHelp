@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">  
+	<nav class="navbar navbar-expand-lg navbar-light arredondar-nav bg-cinza shadow-sm mb-2">
+		<div class="container">
+			<span class="navbar-brand" style="font-size: 23px"><i class="fas fa-chart-line hashtag"></i> <b>Painel - Meus Ativos</b></span>
+			<a type="button" href="{% url 'ativo-create' %}" class="btn btn-primary arredondar-botao">
+			<i style="font-size:13px" class="fas fa-plus"></i> Ativo</a>
+		</div>
+	</nav>
+
+	{% if ativo_list %}
+		<div class="row mb-4">
+			{% for ativo in ativo_list %}
+				<div class="col-12 col-sm-6 mt-2">
+					<div class="card">
+						<div class="card-body bg-cinza">
+							<h5 class="card-title"><span class="hashtag">#</span>{{ ativo.fk_ativo.b3 }} - {{ ativo.fk_ativo.nome_empresa}}</h5>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">
+								<b>Valor:</b> 
+								{% if ativo.valor_anterior < ativo.valor %}
+									 R${{ ativo.valor_anterior }} <i class="fas fa-long-arrow-alt-right"></i> R${{ ativo.valor }} <i style="color:green" class="fas fa-arrow-up"></i> {{ ativo.porcentagem }}%
+								{% elif ativo.valor_anterior > ativo.valor %}
+									 R${{ ativo.valor_anterior }} <i class="fas fa-long-arrow-alt-right"></i> R${{ ativo.valor }} <i style="color:red" class="fas fa-arrow-down"></i> {{ ativo.porcentagem }}%
+								{% else %}
+									R${{ ativo.valor_anterior }}
+								{% endif %}      
+							</li>
+							<li class="list-group-item"><b>Limites:</b>
+								 {{ ativo.fk_ativo.lim_inf }} <i class="fas fa-arrows-alt-h"></i> {{ ativo.fk_ativo.lim_sup }}
+							</li>
+							<li class="list-group-item"><b>Sugestão:</b>
+								{% if ativo.fk_ativo.lim_sup <= ativo.valor %}
+									Vender
+								{% elif ativo.fk_ativo.lim_inf >= ativo.valor %}
+									Comprar
+								{% else %}
+									Aguardar  
+								{% endif %}
+							</li>
+						</ul>
+						<div class="card-body bg-cinza">
+							<a href="{% url 'ativo-hist' ativo.fk_ativo.id %}" class="card-link"><i class="fas fa-history"></i> Histórco</a>
+							<span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							<a href="{% url 'ativo-update' ativo.fk_ativo.id %}" class="card-link"><i  class="fas fa-pencil-alt"></i> Alterar</a>
+							<a href="{% url 'ativo-delete' ativo.fk_ativo.id %}" class="card-link text-danger"><i class="fas fa-times"></i> Deletar</a>
+						</div>
+					</div>
+				</div>      
+			{% endfor %}
+		</div>  
+	{% else %}
+		<h5>Você ainda não cadastrou ativos para serem monitorados...</h5>
+	{% endif %} 
+{% endblock %}

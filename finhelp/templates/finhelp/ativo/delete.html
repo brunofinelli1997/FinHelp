@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-4 mb-5">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb col-md-8 col-11 mx-auto">
+			<li class="breadcrumb-item"><a href="{% url 'profile'%}">Meus Ativos</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Deletar Ativo: {{ ativo.b3 }}</li>
+		</ol>
+	</nav>
+	<div class="p-5 mb-4 rounded-3 col-md-8 col-10 mx-auto bg-cinza">
+		<div class="container-fluid py-2">
+			<h1><span class="hashtag">#</span>Deletar Ativo</h1>
+			<p class="lead">Você tem certeza que deseja deletar o ativo abaixo?</p>
+			<hr class="my-4">
+			<p class="fs-5"><b>Ativo:</b> {{ ativo.b3 }} - {{ ativo.nome_empresa }}</p>
+			<p class="fs-5"><b>Descrição:</b> {{ ativo.desc_empresa }}</p>
+			<form method="post" action="" class="boostrap4">
+				{% csrf_token %}
+				{{ form|crispy }}
+				<input type="submit" class="btn btn btn-primary mt-4 arredondar-botao" value="Sim, deletar!" />
+			</form>
+		</div>
+	</div>
+</div> 
+{% endblock %}

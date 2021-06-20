@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-4 mb-5">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb col-md-8 col-11 mx-auto">
+			<li class="breadcrumb-item"><a href="{% url 'profile'%}">Meus Ativos</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Meus Dados</li>
+		</ol>
+	</nav>
+	<div class="p-5 mb-4 rounded-3 col-md-8 col-11 mx-auto bg-cinza">
+		<div class="container-fluid py-2">
+			<h1><span class="hashtag">#</span>Meus Dados</h1>
+			<p class="lead">Preencha os campos abaixo para atualizar seus dados pessoais.</p>
+			<hr class="my-4">
+			{% if flag == 1 %}
+				<div class="alert alert-success" role="alert">
+					<b>Cadastro realizado com sucesso!!</b>
+				</div>
+			{% endif %}
+			<h5>Dados Pessoais:</h5>
+			<form method="post" action="" class="boostrap4">
+				{% csrf_token %}
+				<div class="row">
+					<div class="col-12 col-md-6">
+						{{ form.first_name|as_crispy_field }}
+					</div>
+					<div class="col-12 col-md-6">
+						{{ form.last_name|as_crispy_field }}
+					</div>         
+						{{ form.email|as_crispy_field }}
+					<div class="col-12">  
+						{{ form.profession|as_crispy_field }}
+					</div>
+				</div>  
+				<input type="submit" class="btn btn btn-primary mt-4 arredondar-botao" value="Atualizar Dados" />
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
