@@ -10,7 +10,7 @@ class Ativo(models.Model):
     fk_user = models.ForeignKey('users.User',on_delete=models.CASCADE,null=True) 
 
     def __str__(self):
-        return f'{self.id} | {self.fk_user.username} | {self.b3} | {self.company_name} | {self.lim_sup} | {self.lim_inf}'
+        return f'{self.id} | {self.fk_user.username} | {self.b3} | {self.nome_empresa} | {self.lim_sup} | {self.lim_inf}'
 
 class HistAtivo(models.Model):
     fk_ativo = models.ForeignKey('Ativo',on_delete=models.CASCADE,null=True)
