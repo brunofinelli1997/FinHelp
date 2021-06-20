@@ -26,3 +26,10 @@ python manage.py runserver
 ```sh
 python -m smtpd -n -c DebuggingServer localhost:1025
 ```
+
+## Login
+Foi criado um super usuário para acessar o /admin
+```sh
+usuário: inoa
+senha: inoa#2021
+```
