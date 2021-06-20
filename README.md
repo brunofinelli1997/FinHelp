@@ -28,7 +28,7 @@ python -m smtpd -n -c DebuggingServer localhost:1025
 ```
 
 ## Login
-Foi criado um super usuário para acessar o /admin
+Foi criado um super usuário para acessar o Painel Administrativo (/admin)
 ```sh
 usuário: inoa
 senha: inoa#2021
