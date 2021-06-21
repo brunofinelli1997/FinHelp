@@ -26,22 +26,23 @@ def update_histAtivo():
         #Consulta as últimas infos que foram cadastradas no banco de dados
         hist_list = HistAtivo.objects.filter( fk_ativo__b3 = ativo, ultimo_hist=True)
         
+        #Consome API
+        url = 'https://api.hgbrasil.com/finance/stock_price?key=5b52b69a&symbol=' + ativo
+        request_api = requests.get(url).json()
+
+        percent = request_api['results'][ativo]['change_percent']
+        val = request_api['results'][ativo]['price']
+
+        #Calcula valor anterior
+        if percent == 0:
+            percent2 = 1
+        else:
+            percent2 = 1 + (percent / 100)
+
+        valor_anterior = round((val / percent2), 2)
+            
         #Atualiza as infos dos ativos
         for hist in hist_list:
-            url = 'https://api.hgbrasil.com/finance/stock_price?key=5b52b69a&symbol=' + ativo
-            request_api = requests.get(url).json()
-
-            percent = request_api['results'][ativo]['change_percent']
-            val = request_api['results'][ativo]['price']
-
-            #Calcula valor anterior
-            if percent == 0:
-                percent2 = 1
-            else:
-                percent2 = 1 + (percent / 100)
-
-            valor_anterior = round((val / percent2), 2)
-
             histAtivo = HistAtivo.objects.create(
                 fk_ativo = hist.fk_ativo,
                 valor =  val,
