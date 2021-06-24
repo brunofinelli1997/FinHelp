@@ -71,7 +71,6 @@ def send_emails():
         #Variáveis para operações
         ativos_compra = ''
         ativos_venda = ''
-        email_cliente = ''
 
         for hist in hist_list:
             #Possibilidade de compra de ativo
